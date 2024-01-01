@@ -6,11 +6,11 @@ env:
   TERM: xterm-256color
   JDK_CURRENT: 21
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: workflow_dispatch
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
 
 jobs:
   cancel-previous-runs:
