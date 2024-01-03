@@ -20,30 +20,30 @@ zip -d $WAR WEB-INF/lib/bcprov-jdk15on-1.70.jar
 zip -d $WAR WEB-INF/lib/commons-text-1.9.jar
 
 echo 'Update files for fix LDAP error'
-zip -d $WAR WEB-INF/lib/cas-server-core-authentication-6.5.5.jar
-zip -d $WAR WEB-INF/lib/cas-server-support-ldap-6.5.5.jar
+zip -d $WAR WEB-INF/lib/cas-server-core-authentication-*.jar
+zip -d $WAR WEB-INF/lib/cas-server-support-ldap-*.jar
 
 cd extras/ldap
 zip -r ../../$WAR WEB-INF
 cd ../..
 
 echo 'Update files for CIDRA support'
-zip -d $WAR WEB-INF/lib/cas-server-support-radius-core-6.5.5.jar
+zip -d $WAR WEB-INF/lib/cas-server-support-radius-core-*.jar
 
 cd extras/cidra
 zip -r ../../$WAR WEB-INF
 cd ../..
 
 echo 'Update files for DUO db schema'
-zip -d $WAR WEB-INF/lib/cas-server-support-jpa-ticket-registry-6.5.5.jar
-zip -d $WAR WEB-INF/lib/cas-server-support-jpa-util-6.5.5.jar
+zip -d $WAR WEB-INF/lib/cas-server-support-jpa-ticket-registry-*.jar
+zip -d $WAR WEB-INF/lib/cas-server-support-jpa-util-*.jar
 
 cd extras/duo_universal_fix_db_schema
 zip -r ../../$WAR WEB-INF
 cd ../..
 
 echo 'Update files for API REST non standart port'
-zip -d $WAR WEB-INF/lib/cas-server-core-rest-api-6.5.5.jar
+zip -d $WAR WEB-INF/lib/cas-server-core-rest-api-*.jar
 
 cd extras/rest
 zip -r ../../$WAR WEB-INF
