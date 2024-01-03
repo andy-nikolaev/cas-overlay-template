@@ -67,6 +67,8 @@ jobs:
         with:
                 name: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}
                 path: ./**/pkg/*
+      - name: list
+        run: ls -al
       - name: Publish to S3 bucket
         if: ${{inputs.s3publish == true}}
         uses: shallwefootball/s3-upload-action@master
