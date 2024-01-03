@@ -53,6 +53,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven { url 'https://oss.sonatype.org/content/repositories/releases' }
+    maven { url 'https://maven.repository.redhat.com/ga/' } 
     maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots'
         mavenContent { snapshotsOnly() }
@@ -79,6 +80,14 @@ configurations.all {
         cacheChangingModulesFor 0, "seconds"
         cacheDynamicVersionsFor 0, "seconds"
         preferProjectModules()
+// Update CVE library
+        force 'org.bouncycastle:bcprov-jdk15on:1.66'
+        force 'org.bouncycastle:bcpkix-jdk15on:1.66'
+	force 'org.apache.commons:commons-text:1.10.0'
+	force 'org.springframework:spring-webmvc:5.3.27'
+	force 'org.springframework.security:spring-security-config:5.6.+'
+	force 'org.springframework.security:spring-security-web:5.6.+'
+
         def failIfConflict = project.hasProperty("failOnVersionConflict") && Boolean.valueOf(project.getProperty("failOnVersionConflict"))
         if (failIfConflict) {
             failOnVersionConflict()
@@ -124,8 +133,32 @@ dependencies {
      * plugin via the CAS bom.
      **/
 
-    implementation "org.apereo.cas:cas-server-core-api-configuration-model"
-    implementation "org.apereo.cas:cas-server-webapp-init"
+implementation "org.apereo.cas:cas-server-core-api-configuration-model"
+implementation "org.apereo.cas:cas-server-webapp-init"
+
+implementation "org.apereo.cas:cas-server-webapp-init-tomcat:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-webapp-starter-tomcat:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-webapp-tomcat:${project.'cas.version'}"
+
+implementation "org.apereo.cas:cas-server-support-generic:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-ldap:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-saml:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-pac4j-webflow:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-rest:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-jpa-ticket-registry:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-token-webflow:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-jpa-service-registry:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-radius-mfa:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-gauth:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-gauth-jpa:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-duo:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-yubikey:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-yubikey-jpa:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-x509-webflow:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-audit-jdbc:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-u2f:${project.'cas.version'}"
+implementation "org.apereo.cas:cas-server-support-radius:${project.'cas.version'}"
+
 
     if (project.hasProperty("casModules")) {
         def dependencies = project.getProperty("casModules").split(",")
