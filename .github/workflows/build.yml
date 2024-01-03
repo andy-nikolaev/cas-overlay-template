@@ -47,9 +47,9 @@ jobs:
                 path: build/libs/
       - name: set name package
         run: |
-                echo "::set-env date=NOW::$(date +'%Y%m%d')"
+                echo "::set-env date_release=NOW::$(date +'%Y%m%d')"
       - uses: actions/upload-artifact@v4.0.0
         name: Upload Imprivata package
         with:
-                name: pam-cas.${{date}}
+                name: pam-cas.${{env.date_release}}
                 path: pkg/
