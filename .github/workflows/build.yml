@@ -30,7 +30,7 @@ jobs:
         os: [ ubuntu-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-        id: build
+        id: buildTest
       - uses: actions/checkout@v4
       - name: Set up JDK
         uses: actions/setup-java@v4.0.0
@@ -52,5 +52,5 @@ jobs:
       - uses: actions/upload-artifact@v4.0.0
         name: Upload Imprivata package
         with:
-                name: pam-cas.${{steps.build.outputs.artifact}}
+                name: pam-cas.${{steps.buildTest.outputs.artifact}}
                 path: pkg/
