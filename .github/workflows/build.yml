@@ -14,6 +14,12 @@ on:
                 feature:
                         required: true
                         type: string
+                        description: add tag for unique build
+                s3publish:
+                        required: false
+                        type: boolean
+                        description: publish to S3 bucket
+                        default: false
 #  push:
 #    branches: [ master ]
 #  pull_request:
@@ -61,3 +67,22 @@ jobs:
         with:
                 name: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}
                 path: ./**/pkg/*
+      - name: Publish to S3 bucket
+        if: ${{inputs.s3publish == true}}
+        uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}.zip
+          destination_dir: /legacy/tmp/
+
+        
+                
+            
+      
+      
+  
+      
+        
+        
