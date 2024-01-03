@@ -68,7 +68,7 @@ jobs:
                 name: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}
                 path: ./**/pkg/*
       - name: Create archive
-        run: zip -r pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}.zip
+        run: zip -r pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}.zip pkg
       - name: list
         run: ls -al
       - name: Publish to S3 bucket
