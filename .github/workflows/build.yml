@@ -38,7 +38,15 @@ jobs:
           distribution: 'temurin'
       - name: Build
         run: ./gradlew clean build
+      - name: Build Imprivata CAS
+        run: ./post-build
       - uses: actions/upload-artifact@v4.0.0
+        name: Upload original CAS build for Imprivata
         with:
                 name: cas-original-build
                 path: build/libs/
+      - uses: actions/upload-artifact@v4.0.0
+        name: Upload Imprivata package
+        with:
+                name: pam-cas
+                path: pam-cas.*
