@@ -9,6 +9,10 @@ env:
 
 
 on: workflow_dispatch
+        inputs:
+                feature:
+                        required: true
+                        type: string
 #  push:
 #    branches: [ master ]
 #  pull_request:
@@ -54,5 +58,5 @@ jobs:
       - uses: actions/upload-artifact@v4.0.0
         name: Upload Imprivata package
         with:
-                name: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}
+                name: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}
                 path: ./**/pkg/*
