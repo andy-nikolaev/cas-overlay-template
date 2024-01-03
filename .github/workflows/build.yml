@@ -52,4 +52,4 @@ jobs:
         name: Upload Imprivata package
         with:
                 name: pam-cas.${GITHUB_REF##\*/}.${{env.GITHUB_RELEASE_DATE}}
-                path: **/pkg/*
+                path: ./**/pkg/*
