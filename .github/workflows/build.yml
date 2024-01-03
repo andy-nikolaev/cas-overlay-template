@@ -51,8 +51,9 @@ jobs:
       -name: get CAS version
         run: |
                 echo "GITHUB_CAS_VERSION=$(./gradlew -q casVersion)"  >> $GITHUB_ENV
+
       - uses: actions/upload-artifact@v4.0.0
         name: Upload Imprivata package
         with:
-                name: pam-cas.${{env."GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}
+                name: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}
                 path: ./**/pkg/*
