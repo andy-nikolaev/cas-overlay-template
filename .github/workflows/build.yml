@@ -8,7 +8,8 @@ env:
   PRIVATE_REPO_TOKEN: ${{ github.token }} 
 
 
-on: workflow_dispatch:
+on: 
+  workflow_dispatch:
         inputs:
                 feature:
                         required: true
