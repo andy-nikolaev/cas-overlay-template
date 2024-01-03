@@ -81,17 +81,15 @@ jobs:
   #        source_dir: ./pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}.zip
   #        destination_dir: /legacy/tmp/
       - name: Upload binary to S3 bucket
-        uses: NayamAmarshe/cp-file-to-s3@master
-        with:
-         args: --acl public-read
-         env:
-         FILE: ./pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}.zip
-         DEST: legacy/tmp/
-         AWS_REGION: 'us-east-2'
-         AWS_S3_BUCKET: ${{ secrets.AWS_BUCKET }}
-         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
-         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
+        uses: airuleguy/s3-cp-action@master
+        env:
+          FILE: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}.zip
+          SOURCE_PATH: /
+          DESTINATION_KEY: /legacy/tmp/
+          AWS_S3_BUCKET: ${{ secrets.AWS_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-2'
         
                 
             
