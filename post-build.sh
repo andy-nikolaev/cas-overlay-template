@@ -84,6 +84,6 @@ echo "Create package CAS"
 mkdir pkg
 mkdir pkg/cas
 cp build/libs/cas.war pkg/cas
-zip -r pam-cas.$version.$date.zip pkg
-rm -rf pkg
+#zip -r pam-cas.$version.$date.zip pkg
+#rm -rf pkg
 
