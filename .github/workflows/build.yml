@@ -47,9 +47,9 @@ jobs:
                 path: build/libs/
       - name: set name package
         run: |
-                echo "::set-output name=date_release::$(date +'%Y%m%d')"
+                echo "GITHUB_RELEASE_DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
       - uses: actions/upload-artifact@v4.0.0
         name: Upload Imprivata package
         with:
-                name: pam-cas.${{date_release}}
+                name: pam-cas.$GITHUB_RELEASE_DATE
                 path: pkg/
