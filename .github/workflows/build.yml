@@ -64,8 +64,10 @@ jobs:
                 name: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}
                 path: ./**/pkg/*
       - name: Create archive
-        run: zip -r pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}.zip pkg
+        run: zip -r pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}.zip pkg    
+        
       - name: Upload binary to S3 bucket
+        if: inputs.s3publish
         uses: airuleguy/s3-cp-action@master
         env:
           FILE: pam-cas.${{env.GITHUB_CAS_VERSION}}.${{env.GITHUB_RELEASE_DATE}}.${{inputs.feature}}.zip
@@ -75,6 +77,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-2'
+        
         
                 
             
